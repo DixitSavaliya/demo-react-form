@@ -9,6 +9,7 @@ class App extends React.Component {
 		this.state = localStorage.getItem('token');
   }
   
+  /** Render this app first app component run */
 	render() {
 		if (!this.state) {
 			return (

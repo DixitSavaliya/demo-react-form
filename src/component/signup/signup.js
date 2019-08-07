@@ -1,11 +1,10 @@
 import React from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBBtn } from 'mdbreact';
 import API from '../../service/signup.service';
-import Login from '../login/login';
-import { Link } from 'react-router-dom';
 import '../login/login.css'
 
 class SignUp extends React.Component {
+	/** constructor call */
 	constructor(props) {
 		console.log("props======", props);
 		super(props);
@@ -49,10 +48,10 @@ class SignUp extends React.Component {
 		if (!reg.test(this.state.email)) {
 			emailError = "invalid email";
 		}
-
-		if (!this.state.password) {
-			passwordError = "please enter password";
-		}
+		const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        if (!regex.test(this.state.password)) {
+            passwordError = "please enter old password";
+        }
 
 		if (firstNameError || lastNameError || userNameError || emailError || passwordError) {
 			this.setState({ firstNameError, lastNameError, userNameError, emailError, passwordError });

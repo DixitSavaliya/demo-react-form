@@ -41,8 +41,9 @@ class Login extends React.Component {
       userNameError = "please enter username";
     }
 
-    if (!this.state.password) {
-      passwordError = "please enter password";
+    const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    if (!regex.test(this.state.password)) {
+      passwordError = "please enter old password";
     }
 
     if (userNameError || passwordError) {
@@ -64,7 +65,6 @@ class Login extends React.Component {
         passwordError: ''
       })
     };
-
     if (this.state.userName && this.state.password) {
       const obj = {
         userName: this.state.userName,

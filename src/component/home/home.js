@@ -25,6 +25,7 @@ class Home extends React.Component {
         this.updatepassword = this.updatepassword.bind(this);
     }
 
+    /** navbar collapse */
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }

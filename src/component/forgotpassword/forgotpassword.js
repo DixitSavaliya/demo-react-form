@@ -20,6 +20,7 @@ class ForgotPassword extends React.Component {
         this.handleChangeEvent = this.handleChangeEvent.bind(this);
     }
 
+    /** first this method call when app run */
     componentDidMount() {
         console.log("query=", this.props.location);
         this.toggle();

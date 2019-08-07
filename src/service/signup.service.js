@@ -2,25 +2,33 @@ import axios from 'axios';
 import { config } from '../config';
 
 export default {
-    /** User Signup */
+
+    /** 
+     * @param {json}
+     * user signup
+     */
     Signup: (obj) => {
-        console.log("obj:", obj)
         return axios.post(config.baseApiUrl + "api/signup", obj)
             .then(response => {
                 return response;
             }).catch({ status: 500, message: 'Internal Server Error' });
     },
 
-    /** User Login */
+    /** 
+     * @param {json}
+     * user login
+     */
     Login: (obj) => {
-        console.log("obj==", obj);
         return axios.post(config.baseApiUrl + "api/login", obj)
             .then(response => {
                 return response;
             }).catch({ status: 500, message: 'Internal Server Error' });
     },
 
-    /** Forgot Password */
+    /** 
+      * @param {json}
+      * forgot password
+      */
     ForgotPassword: (obj) => {
         return axios.post(config.baseApiUrl + "api/resetPassword", obj)
             .then(response => {
@@ -28,11 +36,12 @@ export default {
             }).catch({ status: 500, message: 'Internal Server Error' });
     },
 
-    /** Update Password */
+    /** 
+      * @param {json}
+      * update password
+      */
     UpdatePasswordUser: (obj) => {
         const Token = localStorage.getItem('token');
-        console.log("token==", Token);
-        console.log("data======", obj);
         const headers = {
             'content-type': 'application/json',
             'Authorization': 'JWT fefege...',
@@ -44,9 +53,11 @@ export default {
             }).catch({ status: 500, message: 'Internal Server Error' });
     },
 
-    /** Reset Password */
+    /** 
+       * @param {json}
+       * reset password
+       */
     ResetPassword: (obj, hash) => {
-        console.log("hash===", obj, hash);
         return axios.post(config.baseApiUrl + "api/email-verify/" + hash, obj)
             .then(response => {
                 return response;

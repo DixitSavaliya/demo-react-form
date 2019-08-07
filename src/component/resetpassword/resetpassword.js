@@ -12,15 +12,34 @@ class ResetPassword extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            password: ''
+            password: '',
+            passwordError: ''
         }
         this.ResetPassword = this.ResetPassword.bind(this);
         this.handleChangeEvent = this.handleChangeEvent.bind(this);
     }
 
+    /** first this method call */
     componentDidMount() {
         console.log("query=", this.props.location.pathname.split('/')[2]);
     }
+
+    /** validation of reset form */
+    validate = () => {
+        let passwordError = "";
+
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        if (!regex.test(this.state.password)) {
+            passwordError = "please enter old password";
+        }
+
+        if (userNameError || passwordError) {
+            this.setState({ userNameError, passwordError });
+            return false;
+        }
+        return true;
+    };
+
 
     /** onChange event  */
     handleChangeEvent(event) {
@@ -30,7 +49,16 @@ class ResetPassword extends React.Component {
         this.setState(state);
     }
 
+    /** Reset password  */
     ResetPassword() {
+        const isValid = this.validate();
+        if (isValid) {
+            console.log(this.state);
+            this.setState({
+                password: '',
+                passwordError: ''
+            })
+        };
         const obj = {
             password: this.state.password
         }
@@ -61,6 +89,9 @@ class ResetPassword extends React.Component {
                                 value={this.state.password}
                                 onChange={this.handleChangeEvent}
                             />
+                            <div style={{ fontSize: 12, color: "red" }}>
+                                {this.state.passwordError}
+                            </div>
                         </form>
                     </MDBModalBody>
                     <MDBModalFooter>

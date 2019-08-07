@@ -27,7 +27,6 @@ class UpdatePassword extends React.Component {
         this.UpdatePassword = this.UpdatePassword.bind(this);
     }
 
-
     /** onChange event  */
     handleChangeEvent(event) {
         event.preventDefault();
@@ -48,15 +47,16 @@ class UpdatePassword extends React.Component {
             emailError = "invalid email";
         }
 
-        if (!this.state.oldPassword) {
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        if (!regex.test(this.state.oldPassword)) {
             oldPasswordError = "please enter old password";
         }
 
-        if (!this.state.newPassword) {
+        if (!regex.test(this.state.oldPassword)) {
             newPasswordError = "please enter new password";
         }
 
-        if (!this.state.confirmPasswordError) {
+        if (!regex.test(this.state.confirmPassword)) {
             confirmPasswordError = "please enter confirm password";
         }
 
